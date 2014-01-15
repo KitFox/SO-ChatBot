@@ -17,7 +17,7 @@ var laws = [
 }).join( '\n' );
 
 bot.listen( /^what are (your|the) (rule|law)s.*/i, function ( msg ) {
-	return laws;
+	msg.directreply( laws );
 });
 
 bot.listen(/^yahoo.*/, function ( msg ) {
@@ -150,9 +150,12 @@ var pinkyResponses =[
 ];
 
 bot.listen( /^(are you|art thou) (thinking|pondering) (what|that which) (I'm|I am) (thinking|pondering)./i, function ( msg ) {
-	return pinkyResponses.random();
+	msg.directreply( pinkyResponses.random(); )
 });
 
+bot.listen(/^up up down down left right left right b a start$/, function ( msg ) {
+	msg.send('*Nine lives added*');
+});
 var dictionaries = [
 	//what's a squid?
 	//what is a squid?
