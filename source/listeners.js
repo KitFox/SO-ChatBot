@@ -150,7 +150,7 @@ var pinkyResponses =[
 ];
 
 bot.listen( /^(are you|art thou) (thinking|pondering) (what|that which) (I'm|I am) (thinking|pondering)./i, function ( msg ) {
-	msg.directreply( pinkyResponses.random(); )
+	msg.directreply( pinkyResponses.random() );
 });
 
 bot.listen(/^up up down down left right left right b a start$/, function ( msg ) {
