@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
 "use strict";
 var confusionResponses = [
 	'That didn\'t make much sense.',
@@ -45,8 +45,9 @@ var bot = window.bot = {
 		try {
 			//it wants to execute some code
 			if ( /^c?>/.test(msg) ) {
-				this.eval( msg );
+				this.eval( msg.toString(), msg.directreply.bind(msg) );
 			}
+			//or maybe some other action.
 			else {
 				this.invokeAction( msg );
 			}
@@ -107,7 +108,7 @@ var bot = window.bot = {
 		}
 		//mmmm....nachos
 		else {
-			errMsg += ' Use the help command to learn more.';
+			errMsg += ' Use the `!!/help` command to learn more.';
 		}
 		//wait a minute, these aren't nachos. these are bear cubs.
 		return errMsg;
@@ -142,7 +143,10 @@ var bot = window.bot = {
 	prepareMessage : function ( msgObj ) {
 		msgObj = this.adapter.transform( msgObj );
 
-		var msg = IO.decodehtmlEntities( msgObj.content );
+		//decode markdown and html entities.
+		var msg = IO.htmlToMarkdown( msgObj.content ); //#150
+		msg = IO.decodehtmlEntities( msg );
+
 		//fixes issues #87 and #90 globally
 		msg = msg.replace( /\u200b|\u200c/g, '' );
 
@@ -153,6 +157,12 @@ var bot = window.bot = {
 
 	validateMessage : function ( msgObj ) {
 		var msg = msgObj.content.trim();
+
+		//a bit js bot specific...make sure it isn't just !!! all round. #139
+		if ( this.invocationPattern === '!!' && (/^!!!+$/).test(msg) ) {
+			console.log('special skip');
+			return false;
+		}
 
 		return (
 			//make sure we don't process our own messages,
@@ -368,6 +378,7 @@ bot.Command = function ( cmd ) {
 	cmd.del = function () {
 		bot.info.forgotten += 1;
 		delete bot.commands[ cmd.name ];
+		bot.commandDictionary.trie.del(cmd.name);
 	};
 
 	return cmd;
@@ -557,6 +568,7 @@ bot.beatInterval = 5000; //once every 5 seconds is Good Enough ™
 //#build eval.js
 
 //#build parseCommandArgs.js
+//#build parseMacro.js
 //#build suggestionDict.js
 
 //#build commands.js
