@@ -1900,9 +1900,12 @@ var commands = {
 		else if (/^(grande|large)/.test(args)) {
 			args.directreply( 'http://www.precisionnutrition.com/wordpress/'+
 		'wp-content/uploads/2010/01/w-Giant-Coffee-Cup75917.jpg' );
-		}	
+		}
+		 else if (/^(with cream|sugar and milk|black|regular)/.test(args)) {
+                			args.directreply('Here go you, sugar.');
+          		 }
 		else {
-			return 'I\'m not that skilled a barrista.';
+			return 'I\'m not that skilled a barista.';
 		}
 	},
 
