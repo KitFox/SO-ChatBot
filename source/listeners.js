@@ -20,6 +20,10 @@ bot.listen( /^what are (your|the) (rule|law)s.*/i, function ( msg ) {
 	msg.directreply( laws );
 });
 
+bot.listen( /^what is (your|the) first (rule|law)s.*/i, function ( msg ) {
+	msg.directreply( laws(0) );
+});
+
 bot.listen(/^yahoo.*/, function ( msg ) {
 	return 'Yahoo is for yahoos. Try Google.';
 });
