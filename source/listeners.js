@@ -20,18 +20,6 @@ bot.listen( /^what are (your|the) (rule|law)s.*/i, function ( msg ) {
 	msg.directreply( laws );
 });
 
-bot.listen( /^what is (your|the) first (rule|law).*/i, function ( msg ) {
-	msg.directreply( laws[0] );
-});
-
-bot.listen( /^what is (your|the) second (rule|law).*/i, function ( msg ) {
-	msg.directreply( laws[1] );
-});
-
-bot.listen( /^what is (your|the) third (rule|law).*/i, function ( msg ) {
-	msg.directreply( laws[2] );
-});
-
 bot.listen(/^yahoo.*/, function ( msg ) {
 	return 'Yahoo is for yahoos. Try Google.';
 });
