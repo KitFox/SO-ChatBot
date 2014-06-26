@@ -327,18 +327,19 @@ return function ( args ) {
 }());
 
 var descriptions = {
-	eval : 'Forwards message to javascript code-eval',
-	coffee : 'Forwards message to coffeescript code-eval',
-	forget : 'Forgets a given command. `/forget cmdName`',
-	help : 'Fetches documentation for given command, or general help article.' +
-		' `/help [cmdName]`',
-	info : 'Grabs some stats on my current instance or a command.' +
-		' `/info [cmdName]`',
-	listcommands : 'Lists commands. `/listcommands [page=0]`',
-	listen : 'Forwards the message to my ears (as if called without the /)',
-	refresh : 'Reloads the browser window I live in',
-	tell : 'Redirect command result to user/message.' +
-		' /tell `msg_id|usr_name cmdName [cmdArgs]`'
+  eval: 'Forwards message to javascript code-eval',
+        coffee: 'Forwards message to barista',
+        forget: 'Forgets a given command. `/forget cmdName`',
+        help: 'Fetches documentation for given command, or general help article.' +' `/help [cmdName]`',
+        info: 'Grabs some stats on my current instance or a command.' +' `/info [cmdName]`',
+        lego: 'Returns an image of a LEGO set and link to Brickset page. Takes set number as argument.',
+        legopart: 'Returns image of LEGO part. Takes part number as argument.',
+        listcommands: 'Lists commands. `/listcommands [page=0]`',
+        listen: 'Forwards the message to my ears (as if called without the /)',
+        nano: 'Returns a NaNoWriMo user widget. Takes NaNo handle as argument.',
+        refresh: 'Reloads the browser window I live in',
+        tell: 'Redirect command result to user/message.' +' /tell `msg_id|usr_name cmdName [cmdArgs]`',
+        wordwar: 'Returns a NaNoWriMo wordwar widget. Takes two NaNo handles as arguments (no delimiter).'
 };
 
 //only allow owners to use certain commands
